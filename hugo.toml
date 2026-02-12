@@ -1,4 +1,4 @@
-baseURL = 'https://junsheng.github.io/personal_blog/'
+baseURL = 'https://sweeneyzhang.github.io/personal_blog/'
 languageCode = 'zh-CN'
 title = '个人博客'
 theme = 'ananke'
