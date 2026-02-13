@@ -1,0 +1,162 @@
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <div class="columns is-variable is-6">
+      <div class="column is-8-tablet is-8-desktop is-9-widescreen">
+        {{ if .IsHome }}
+          <h1 class="title is-1">{{ .Title }}</h1>
+          <div class="content">
+            {{ .Content }}
+          </div>
+          {{ if .Site.RegularPages }}
+            <h2 class="title is-3 mt-6">最近文章</h2>
+            <div class="article-list">
+              {{ range first 5 .Site.RegularPages }}
+                {{ if not .Params.type }}
+                  <article class="article-item">
+                    <a href="{{ .RelPermalink }}" class="article-title">
+                      <h3>{{ .Title }}</h3>
+                    </a>
+                    {{ if or .Params.categories (not .Date.IsZero) }}
+                      <div class="article-meta">
+                        {{ if .Params.categories }}
+                          <span class="category">{{ index .Params.categories 0 }}</span>
+                        {{ end }}
+                        {{ if not .Date.IsZero }}
+                          <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+                        {{ end }}
+                      </div>
+                    {{ end }}
+                  </article>
+                {{ end }}
+              {{ end }}
+            </div>
+          {{ end }}
+        {{ else if eq .Params.type "about" }}
+          <div class="about-page">
+            <h1 class="title is-1">{{ .Title }}</h1>
+            <div class="content">
+              {{ .Content }}
+            </div>
+          </div>
+        {{ else }}
+          <h1 class="title is-2">{{ .Title }}</h1>
+          {{ if .Content }}
+            <div class="content">
+              {{ .Content }}
+            </div>
+          {{ end }}
+          <div class="article-list mt-6">
+            {{ range .Pages }}
+              <article class="article-item">
+                <a href="{{ .RelPermalink }}" class="article-title">
+                  <h3>{{ .Title }}</h3>
+                </a>
+                {{ if not .Date.IsZero }}
+                  <div class="article-meta">
+                    <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+                  </div>
+                {{ end }}
+              </article>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .article-list {
+    margin-top: 1.5rem;
+  }
+
+  .article-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .article-item:last-child {
+    border-bottom: none;
+  }
+
+  .article-title {
+    color: #363636;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .article-title:hover {
+    color: #0056b3;
+  }
+
+  .article-title h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-meta {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0;
+  }
+
+  .article-meta .category {
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+    font-weight: 500;
+    color: #363636;
+  }
+
+  .article-meta .date {
+    margin-left: 8px;
+  }
+
+  .content ul {
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .content ul li {
+    list-style: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+  }
+
+  .content ul li:last-child {
+    border-bottom: none;
+  }
+
+  .content ul li a {
+    font-weight: 600;
+    color: #363636;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .content ul li a:hover {
+    color: #0056b3;
+  }
+
+  .content ul li p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .content {
+    text-align: left;
+  }
+</style>
+{{ end }}

@@ -1,13 +1,14 @@
 baseURL = 'https://sweeneyzhang.github.io/personal_blog/'
 languageCode = 'zh-CN'
 title = 'Sweeney 的数字花园'
-theme = 'ananke'
+theme = 'jane'
 
 [params]
   author = 'Sweeney'
   description = '记录技术实践、管理思考与人生感悟的数字空间'
-  background_color_class = 'bg-black'
-  recent_posts_number = 5
+  since = '2026'
+  dateFormat = '2006-01-02'
+  keywords = ['技术', '管理', '架构', '阅读', '随笔']
 
 [[menu.main]]
   name = '首页'

@@ -1,0 +1,32 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{{ "/" | relLangURL }}">
+      {{ .Site.Title }}
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              {{ .Name }}
+            </a>
+            <div class="navbar-dropdown">
+              {{ range .Children }}
+                <a class="navbar-item" href="{{ .URL | relURL }}">
+                  {{ .Name }}
+                </a>
+              {{ end }}
+            </div>
+          </div>
+        {{ else }}
+          <a class="navbar-item" href="{{ .URL | relURL }}">
+            {{ .Name }}
+          </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</nav>
