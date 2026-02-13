@@ -1,4 +1,40 @@
 baseURL = 'https://sweeneyzhang.github.io/personal_blog/'
 languageCode = 'zh-CN'
-title = '个人博客'
+title = 'Sweeney 的数字花园'
 theme = 'ananke'
+
+[params]
+  author = 'Sweeney'
+  description = '记录技术实践、管理思考与人生感悟的数字空间'
+  background_color_class = 'bg-black'
+  recent_posts_number = 5
+
+[[menu.main]]
+  name = '首页'
+  url = '/'
+  weight = 10
+
+[[menu.main]]
+  name = '研发管理与商业思考'
+  url = '/研发管理与商业思考/'
+  weight = 20
+
+[[menu.main]]
+  name = '工程技术与架构'
+  url = '/工程技术与架构/'
+  weight = 30
+
+[[menu.main]]
+  name = '阅读与认知输入'
+  url = '/阅读与认知输入/'
+  weight = 40
+
+[[menu.main]]
+  name = '随笔与思维碎片'
+  url = '/随笔与思维碎片/'
+  weight = 50
+
+[[menu.main]]
+  name = '关于我'
+  url = '/about/'
+  weight = 60
