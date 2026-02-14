@@ -1,4 +1,4 @@
-baseURL = 'https://sweeneyzhang.github.io/personal_blog/'
+baseURL = 'https://julianzhang.space/'
 languageCode = 'zh'
 title = '风起时'
 theme = 'noteworthy'
