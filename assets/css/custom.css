@@ -1,0 +1,46 @@
+/* 首页文章列表样式 */
+.archives-list-item-title,
+.archives-list-item-section {
+    display: inline-block;
+}
+
+.archives-list-item-section {
+    margin-left: 1em;
+    color: $gray-light;
+    font-size: 0.9em;
+}
+
+.archives-list-item-section a {
+    color: $gray-light;
+    text-decoration: none;
+}
+
+.archives-list-item-section a:hover {
+    color: $teal;
+}
+
+/* 分类预览样式 */
+.category-preview {
+    margin: 2em 0;
+    padding: 1.5em;
+    border-left: 3px solid $teal;
+    background-color: $gray-background;
+}
+
+.category-preview h3 {
+    margin-top: 0;
+}
+
+.category-preview h3 a {
+    text-decoration: none;
+    color: $gray-dark;
+}
+
+.category-preview h3 a:hover {
+    color: $teal;
+}
+
+.category-preview p {
+    margin-bottom: 0;
+    color: $gray-medium;
+}

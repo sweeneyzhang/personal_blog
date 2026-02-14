@@ -1,0 +1,167 @@
+/* 导航栏美化 */
+.nav-menu {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    padding: 0.4em 0.8em;
+    transition: all 0.2s ease;
+    font-weight: 400;
+}
+
+.nav-link:hover {
+    background-color: rgba(99, 189, 162, 0.08);
+    border-radius: 4px;
+}
+
+.site-title a {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* 首页文章列表样式 */
+.archives-list-item {
+    display: flex;
+    align-items: center;
+    margin: 0.8em 0;
+    padding: 0.5em 0;
+}
+
+.archives-list-item-date {
+    width: auto;
+    min-width: 90px;
+    margin-right: 1.2em;
+    color: #ABABAB;
+    font-size: 0.9em;
+}
+
+.archives-list-item-title a {
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.archives-list-item-title a:hover {
+    color: #63BDA2;
+}
+
+/* 内容区域居中并限制最大宽度 */
+.content-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.article-content {
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* 分类预览样式优化 */
+.category-preview {
+    margin: 2em 0;
+    padding: 1.8em;
+    border-left: 3px solid #63BDA2;
+    background-color: #F9F9F9;
+    border-radius: 0 8px 8px 0;
+    transition: box-shadow 0.2s ease;
+}
+
+.category-preview:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.category-preview h3 {
+    margin-top: 0;
+    margin-bottom: 0.8em;
+}
+
+.category-preview h3 a {
+    text-decoration: none;
+    color: #5F5F5F;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.category-preview h3 a:hover {
+    color: #63BDA2;
+}
+
+.category-preview p {
+    margin-bottom: 0;
+    color: #898989;
+    line-height: 1.6;
+}
+
+/* 隐藏访客统计 */
+#busuanzi_container_site_pv,
+#busuanzi_container_site_uv {
+    display: none !important;
+}
+
+/* 隐藏知识共享协议图片 */
+.footer a[rel="license"] img {
+    display: none;
+}
+
+/* 隐藏页脚不需要的链接 */
+.footer p:has(a[href="/"]),
+.footer a[href="/"] {
+    display: none;
+}
+
+.footer a[href*="github.com/apigeonape/hugo-theme-noteworthy-zh"],
+.footer a[href*="gohugo.io"] {
+    display: none;
+}
+
+/* 隐藏社交图标 */
+.footer .social-icons {
+    display: none;
+}
+
+.archives-list-item-title,
+.archives-list-item-section {
+    display: inline-block;
+}
+
+.archives-list-item-section {
+    margin-left: 1em;
+    color: #ABABAB;
+    font-size: 0.9em;
+}
+
+.archives-list-item-section a {
+    color: #ABABAB;
+    text-decoration: none;
+}
+
+.archives-list-item-section a:hover {
+    color: #63BDA2;
+}
+
+/* 分类预览样式 */
+.category-preview {
+    margin: 2em 0;
+    padding: 1.5em;
+    border-left: 3px solid #63BDA2;
+    background-color: #F7F7F7;
+}
+
+.category-preview h3 {
+    margin-top: 0;
+}
+
+.category-preview h3 a {
+    text-decoration: none;
+    color: #5F5F5F;
+}
+
+.category-preview h3 a:hover {
+    color: #63BDA2;
+}
+
+.category-preview p {
+    margin-bottom: 0;
+    color: #898989;
+}

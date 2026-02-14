@@ -1,40 +1,80 @@
 baseURL = 'https://sweeneyzhang.github.io/personal_blog/'
-languageCode = 'zh-CN'
-title = 'Sweeney 的数字花园'
-theme = 'noteworthy-zh'
+languageCode = 'zh'
+title = '风起时'
+theme = 'noteworthy'
 
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 4
+
+summaryLength = 30
+preserveTaxonomyNames = true
 hasCJKLanguage = true
 
+DefaultContentLanguage = 'zh'
+
+[languages]
+  [languages.zh]
+    LanguageName = '中文'
+    title = '风起时'
+    weight = 1
+
+[taxonomies]
+  tag = 'tags'
+
+[author]
+  name = '晨风'
+
+[markup.goldmark.renderer]
+  unsafe = true
+
 [params]
-  author = 'Sweeney'
-  description = '记录技术实践、管理思考与人生感悟的数字空间'
+  math = true
+  description = 'When the Wind Rises – by Julian Zhang'
+  showReadMore = false
+  email = '#'
+  github = 'https://github.com/sweeneyzhang'
+  mainSections = ["研发管理与商业思考", "工程技术与架构", "阅读与认知输入", "随笔与思维碎片"]
 
 [[menu.main]]
+  identifier = '首页'
   name = '首页'
   url = '/'
-  weight = 10
+  weight = 1
 
 [[menu.main]]
+  identifier = '管理'
   name = '研发管理与商业思考'
   url = '/研发管理与商业思考/'
-  weight = 20
+  weight = 2
 
 [[menu.main]]
+  identifier = '技术'
   name = '工程技术与架构'
   url = '/工程技术与架构/'
-  weight = 30
+  weight = 3
 
 [[menu.main]]
+  identifier = '阅读'
   name = '阅读与认知输入'
   url = '/阅读与认知输入/'
-  weight = 40
+  weight = 4
 
 [[menu.main]]
+  identifier = '随笔'
   name = '随笔与思维碎片'
   url = '/随笔与思维碎片/'
-  weight = 50
+  weight = 5
 
 [[menu.main]]
+  identifier = '关于'
   name = '关于我'
   url = '/about/'
-  weight = 60
+  weight = 6
+
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true

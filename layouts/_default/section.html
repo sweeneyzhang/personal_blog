@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  <p>{{ .Content }}</p>
+
+  {{ $pages := .RegularPages }}
+  {{ if $pages }}
+    <ul class="archives-list">
+      {{ range $pages }}
+        <li class="archives-list-item">
+          <span class="archives-list-item-date">{{ .PublishDate.Format "2006-01-02" }}</span>
+          <span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </span>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p>暂无文章</p>
+  {{ end }}
+
+  <div class="page-footer"></div>
+{{ end }}
