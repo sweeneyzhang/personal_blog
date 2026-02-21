@@ -19,6 +19,7 @@ DefaultContentLanguage = 'zh'
     LanguageName = '中文'
     title = '风起时'
     weight = 1
+    disableKinds = ['RSS']
 
 [taxonomies]
   tag = 'tags'
