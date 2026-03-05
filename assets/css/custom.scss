@@ -165,3 +165,19 @@
     margin-bottom: 0;
     color: #898989;
 }
+
+/* 调整页面内容宽度，减少左右留白 */
+.main-inner {
+    width: 48rem !important; /* 默认是 36rem，调整到 48rem */
+    max-width: 100%;
+}
+
+/* 单页文章宽度 */
+.single .main-inner {
+    width: 48rem !important;
+}
+
+/* 列表页宽度 */
+.list .main-inner {
+    width: 48rem !important;
+}

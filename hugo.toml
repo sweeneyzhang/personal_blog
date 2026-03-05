@@ -1,81 +1,698 @@
-baseURL = 'https://julianzhang.space/'
-languageCode = 'zh'
-title = '风起时'
-theme = 'noteworthy'
+##########################################
+# 站点配置
 
+baseURL = 'https://julianzhang.space/'
+title = "风起时"
+languageCode = "zh-CN"
+hasCJKLanguage = true
+theme = "meme"
+
+# 是否生成 robots.txt 文件
 enableRobotsTXT = true
 
-[pagination]
-  pagerSize = 4
+# i18n
+defaultContentLanguage = "zh-cn"
 
+# 标题大小写格式
+titleCaseStyle = "none"
+
+# 是否复数化列表页面的标题
+pluralizeListTitles = false
+
+# 摘要的字数限制
 summaryLength = 30
-preserveTaxonomyNames = true
-hasCJKLanguage = true
 
-DefaultContentLanguage = 'zh'
+# 是否开启 GitHub 风格的 Emoji 书写方式
+enableEmoji = false
 
-[languages]
-  [languages.zh]
-    LanguageName = '中文'
-    title = '风起时'
-    weight = 1
-    disableKinds = ['RSS']
+# 脚注的返回链接中的文本
+footnoteReturnLinkContents = "↩"
 
+# URL 相关
+disablePathToLower = false
+relativeURLs = false
+uglyURLs = false
+
+# URL 结构
+[permalinks]
+    categories = "/categories/:slug/"
+    tags = "/tags/:slug/"
+
+# 类别
 [taxonomies]
-  tag = 'tags'
+    category = "categories"
+    tag = "tags"
 
-[author]
-  name = '晨风'
+# 修改时间
+[frontmatter]
+    lastmod = ["lastmod", ":git", ":fileModTime", ":default"]
 
-[markup.goldmark.renderer]
-  unsafe = true
+[pagination]
+    disableAliases = false
+    pagerSize = 5
+    path = 'page'
+
+# Markdown 渲染器
+[markup]
+    defaultMarkdownHandler = "goldmark"
+    [markup.goldmark]
+        [markup.goldmark.extensions]
+            definitionList = true
+            footnote = true
+            linkify = true
+            strikethrough = true
+            table = true
+            taskList = true
+            typographer = false
+        [markup.goldmark.parser]
+            attribute = true
+            autoHeadingID = true
+            autoHeadingIDType = "github"
+        [markup.goldmark.renderer]
+            hardWraps = false
+            unsafe = true
+            xHTML = false
+    [markup.highlight]
+        codeFences = true
+        guessSyntax = false
+        lineNos = true
+        lineNumbersInTable = true
+        noClasses = false
+    [markup.tableOfContents]
+        startLevel = 2
+        endLevel = 6
+        ordered = true
+
+# 压缩 HTML
+[minify.tdewolff.html]
+    keepWhitespace = false
+
+# 相关文章
+[related]
+    threshold = 80
+    includeNewer = true
+    toLower = true
+    [[related.indices]]
+        name = "categories"
+        weight = 100
+    [[related.indices]]
+        name = "tags"
+        weight = 95
+    [[related.indices]]
+        name = "date"
+        weight = 10
+        pattern = "2006"
+
+# Atom 文件格式的媒体类型
+[mediaTypes."application/atom+xml"]
+    suffixes = ["xml"]
+
+# MemE 主题自定义的 Atom 模板
+[outputFormats.SectionsAtom]
+    mediaType = "application/atom+xml"
+    baseName = "atom"
+
+# MemE 主题自定义的 RSS 模板
+[outputFormats.SectionsRSS]
+    mediaType = "application/rss+xml"
+    baseName = "rss"
+
+# lunr.js 的搜索索引
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
+
+# Hugo 的输出控制
+[outputs]
+    page = ["HTML"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
+    section = ["HTML"]
+    taxonomy = ["HTML"]
+    term = ["HTML"]
+
+# RSS & Atom 文章数限制
+[services.rss]
+    limit = -1
+
+
+
+##########################################
+# 菜单配置
+
+[menu]
+    ## 菜单栏
+    [[menu.main]]
+        pageref = "/"
+        name = "首页"
+        weight = 1
+        pre = "internal"
+        post = "home"
+    [[menu.main]]
+        pageref = "/研发管理与商业思考/"
+        name = "研发管理"
+        weight = 2
+        pre = "internal"
+        post = "briefcase"
+    [[menu.main]]
+        pageref = "/工程技术与架构/"
+        name = "工程技术"
+        weight = 3
+        pre = "internal"
+        post = "code"
+    [[menu.main]]
+        pageref = "/阅读与认知输入/"
+        name = "阅读"
+        weight = 4
+        pre = "internal"
+        post = "book"
+    [[menu.main]]
+        pageref = "/随笔与思维碎片/"
+        name = "随笔"
+        weight = 5
+        pre = "internal"
+        post = "coffee"
+    [[menu.main]]
+        pageref = "/about/"
+        name = "关于"
+        weight = 6
+        pre = "internal"
+        post = "user-circle"
+    [[menu.main]]
+        weight = 7
+        identifier = "theme-switcher"
+
+
+
+##########################################
+# 主题配置
 
 [params]
-  math = true
-  description = 'When the Wind Rises – by Julian Zhang'
-  showReadMore = false
-  email = '#'
-  github = 'https://github.com/sweeneyzhang'
-  mainSections = ["研发管理与商业思考", "工程技术与架构", "阅读与认知输入", "随笔与思维碎片"]
+    ######################################
+    # 顶栏
 
-[[menu.main]]
-  identifier = '首页'
-  name = '首页'
-  url = '/'
-  weight = 1
+    enableHeader = true
+    enableHeaderAutoHide = false
+    displayHeaderInHome = true
+    headerBackground = "linear-gradient(90deg, #f795331a 0, #f370551a 15%, #ef4e7b1a 30%, #a166ab1a 44%, #5073b81a 58%, #1098ad1a 72%, #07b39b1a 86%, #6dba821a 100%)"
+    headerLayout = "flex"
+    enableNavToggle = true
+    navHeight = "10em"
 
-[[menu.main]]
-  identifier = '管理'
-  name = '研发管理与商业思考'
-  url = '/研发管理与商业思考/'
-  weight = 2
+    ######################################
+    # 品牌栏
 
-[[menu.main]]
-  identifier = '技术'
-  name = '工程技术与架构'
-  url = '/工程技术与架构/'
-  weight = 3
+    siteBrandSVG = false
+    siteBrandSVGWidth = 250
+    siteBrandSVGHeight = 100
+    siteBrandSVGFill = "#fff"
+    siteBrandFontSize = 1
+    siteBrandFontColor = "var(--color-contrast-high)"
 
-[[menu.main]]
-  identifier = '阅读'
-  name = '阅读与认知输入'
-  url = '/阅读与认知输入/'
-  weight = 4
+    ######################################
+    # 菜单栏
 
-[[menu.main]]
-  identifier = '随笔'
-  name = '随笔与思维碎片'
-  url = '/随笔与思维碎片/'
-  weight = 5
+    enableMenu = true
+    displayMenuInHome = true
+    activeInSection = false
 
-[[menu.main]]
-  identifier = '关于'
-  name = '关于我'
-  url = '/about/'
-  weight = 6
+    ######################################
+    # 首页布局
 
-[privacy]
-  [privacy.disqus]
-    disable = true
-  [privacy.googleAnalytics]
-    disable = true
+    homeLayout = "posts"
+    homePoetry = []
+    homeLinksPadding = 1
+    homePoster = ""
+    homeVideoWebm = ""
+    homeVideoMp4 = ""
+    homeLogo = ""
+    homeLogoLink = ""
+    homeTitle = ""
+    homeMotto = ""
+    homeDescription = ""
+    homeKeywords = ""
+    homeLinksDelimiter = ""
+    enableHideInHomepage = false
+
+    ######################################
+    # 站点信息
+
+    siteLogo = "/icons/apple-touch-icon.png"
+    siteDescription = "When the Wind Rises – by Julian Zhang"
+    siteCreatedTime = "2024-01-01T00:00:00+00:00"
+    siteTwitter = ""
+
+    ######################################
+    # 分类方式
+
+    categoryBy = "sections"
+
+    ######################################
+    # 分类页面
+
+    enableTree = true
+    displayPosts = true
+    displayPostsCount = true
+    limitPostsLimit = -1
+
+    ######################################
+    # 标签页面
+
+    enableTagCloud = true
+    fontUnit = "em"
+    largestFontSize = 2.5
+    smallestFontSize = 1
+
+    ######################################
+    # 列表页面
+
+    listWidth = 48
+    displayListTitle = true
+    listDateFormat = "2006.1.2"
+    listDatePosition = "right"
+    groupByMonth = true
+    chineseZodiac = true
+    i18nYear = true
+    i18nMonth = true
+
+    ######################################
+    # 类别列表页面
+
+    displayTaxonomyTermCount = true
+    limitEntriesLimit = -1
+
+    ######################################
+    # 文章分区范围
+
+    mainSections = ["研发管理与商业思考", "工程技术与架构", "阅读与认知输入", "随笔与思维碎片"]
+
+    ######################################
+    # Atom & RSS
+
+    includeContent = true
+    feedFooter = ""
+
+    ######################################
+    # 深色模式
+
+    enableDarkMode = true
+    defaultTheme = "light"
+    hideThemeToggle = false
+    hideThemeToggleInHome = false
+    overrideSystemPreferences = false
+
+    ######################################
+    # 网页应用
+
+    themeColor = "#fff"
+    themeColorDark = "#16171d"
+
+    ######################################
+    # HTML 头部元数据、SEO & 社交网络发现
+
+    jsonLD = true
+    openGraph = true
+    twitterCards = false
+    autoDetectImages = true
+
+    ######################################
+    # Service Worker
+
+    enableServiceWorker = false
+
+    ######################################
+    # KaTeX 公式支持
+
+    enableKaTeX = true
+
+    ######################################
+    # MathJax 公式支持
+
+    enableMathJax = false
+    disableMathJaxMenu = false
+
+    ######################################
+    # Mermaid
+
+    enableMermaid = false
+    mermaidTheme = 'default'
+    mermaidThemeDark = 'dark'
+
+    ######################################
+    # 评论
+
+    enableComments = false
+    autoLoadComments = false
+    enableDisqus = false
+    disqusShortname = ""
+    enableValine = false
+    enableUtterances = false
+    enableGitalk = false
+    enableGiscus = false
+    enableRemark42 = false
+
+    ######################################
+    # Google Analytics
+
+    enableGoogleAnalytics = false
+    trackingCodeType = "gtag"
+    trackingID = ""
+
+    ######################################
+    # Google Site Verification
+
+    googleSiteVerification = ""
+
+    ######################################
+    # Google AdSense
+
+    googleAdClient = ""
+    enableGoogleAutoAds = false
+    enableGoogleAdUnits = false
+    googleAdSlot = ""
+    googleAdSlotInArticle = ""
+    googleAdSlotAutoRelaxed = ""
+
+    ######################################
+    # Yandex.Metrika
+
+    yandexMetrikaId = ""
+
+    ######################################
+    # 文章设置
+
+    duration = 0.5
+    primaryColorLight = "220, 90%, 56%"
+    primaryColorDark = "201, 65%, 62%"
+    postWidth = 48
+    original = true
+
+    ######################################
+    # 文章描述
+
+    displayPostDescription = true
+
+    ######################################
+    # 文章元信息
+
+    enablePostMeta = true
+    enablePostMetaInHome = true
+    postMetaDateFormat = "2006.1.2"
+    displayPublishedDate = true
+    publishedDateIcon = "calendar-alt"
+    displayModifiedDate = true
+    modifiedDateIcon = "calendar-check"
+    displayExpiredDate = false
+    expiredDateIcon = "calendar-times"
+    displayCategory = true
+    categoryIcon = "folder"
+    categoryDelimiter = "/"
+    displayWordCount = true
+    wordCountIcon = "pencil-alt"
+    displayReadingTime = true
+    readingTimeIcon = "clock"
+    displayBusuanziPagePV = false
+    busuanziPagePVIcon = "eye"
+
+    ######################################
+    # Markdown 相关
+
+    hrefTargetBlank = true
+
+    ######################################
+    # 文章目录
+
+    enableTOC = true
+    displayTOCTitle = true
+    displayTOCNum = true
+    linkHeadingsToTOC = true
+
+    ######################################
+    # 分节标题锚点
+
+    enableHeadingsAnchor = true
+    headingsOpt = "1-6"
+    anchorSymbol = "#"
+    anchorIcon = "link"
+    enableAnchorLink = true
+    enableAnchorAutoHide = true
+
+    ######################################
+    # 说明文字
+
+    enableCaption = true
+    captionPrefix = "※ "
+
+    ######################################
+    # 图片外链
+
+    enableImageHost = false
+    imageHostURL = ""
+    headAlso = false
+
+    ######################################
+    # 视频外链
+
+    enableVideoHost = false
+    videoHostURL = ""
+
+    ######################################
+    # 脚注
+
+    squareBrackets = true
+    footnoteReturnLinkIcon = "angle-up"
+    insertHrBySelf = true
+
+    ######################################
+    # 滚动条
+
+    customizeScrollbar = true
+
+    ######################################
+    # 字体排版
+
+    fontFamilySiteBrand = ""
+    fontFamilyMenu = ""
+    fontFamilyTitle = "'Noto Serif SC', serif"
+    fontFamilyHeadings = "'Noto Serif SC', serif"
+    fontFamilyCode = "'Source Code Pro', 'Noto Serif SC', monospace"
+    fontFamilyQuote = ""
+    fontFamilyTOC = ""
+    fontFamilyCaption = ""
+    fontFamilyFooter = ""
+    fontFamilyBody = "'Noto Serif SC', serif"
+    fontsLink = "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    fontSize = 18
+    tabSize = 4
+    lineHeight = 2
+    enableParagraphIndent = true
+    indentFirstParagraph = false
+    paragraphStyle = "margin"
+    enableJustify = true
+    enableDropCap = false
+    enableDropCapAfterHr = false
+    deleteHrBeforeDropCap = false
+    enableSmallCaps = false
+    enableEmphasisPoint = true
+    enableChinesePunctuationGlyphCorrection = true
+
+    ######################################
+    # 文章版权
+
+    enablePostCopyright = true
+    displayPostCopyright = true
+
+    ######################################
+    # 文章更新徽章
+
+    enablePostUpdatedBadge = true
+    displayUpdatedBadge = true
+    enableBadgeTitle = true
+    badgeTitlePrefix = "Updated @ "
+
+    ######################################
+    # 文章的 Git 版本信息
+
+    enablePostGitInfo = false
+    displayPostGitInfo = false
+    repoURL = ""
+    repoEditURL = ""
+    repoEditURLSuffix = ""
+    gitIcon = "code-branch"
+    displayCommitHash = true
+    displayCommitMessage = true
+    msgIcon = "info"
+    displayFeedback = true
+    feedbackIcon = "question"
+    feedbackText = "Feedback"
+    displayEditLink = true
+    editIcon = "edit"
+    editText = "Edit Me?"
+
+    ######################################
+    # 文章分享
+
+    enablePostShare = true
+    displayPostShare = true
+    displayShareOnText = false
+    postShareItems = ["weibo", "douban", "qq", "qzone", "pocket", "qrcode", "email"]
+    fetchFediverseInstances = false
+
+    ######################################
+    # 相关文章
+
+    enableRelatedPosts = true
+    displayRelatedPosts = true
+    relatedPostsNumber = 5
+    relatedPostsIcon = "plus-circle"
+
+    ######################################
+    # 文章的标签
+
+    enablePostTags = true
+    postTagsIcon = "tag"
+
+    ######################################
+    # 文章上下篇
+
+    enablePostNav = true
+    postNavInSection = true
+
+    ######################################
+    # 极简页脚
+
+    enableMinimalFooter = false
+    enableVerticalBarStructure = false
+    enableAboutPageMinimalFooter = false
+
+    ######################################
+    # 返回顶部按钮
+
+    enableBackToTop = true
+    enableBackToTopAutoHide = true
+    displayBackToTopInHome = true
+    displayBackToTopOnMobile = false
+    backToTopIcon = "arrow-up"
+
+    ######################################
+    # 页脚
+
+    enableFooter = true
+    displayFooter = true
+    displayFooterInHome = true
+    displayCopyleftSymbol = false
+    displayCopyrightSymbol = true
+    displaySiteCreatedYear = true
+    iconBetweenYearAndAuthor = "heart"
+    iconColor = "#f06292"
+    iconAnimation = true
+    displaySiteAuthorName = true
+    displayPoweredBy = true
+    displaySiteCopyright = true
+    customFooter = ""
+    displayBusuanziSiteUVAndPV = false
+    busuanziSiteUVText = "本站访客数"
+    busuanziSiteUVIcon = "user"
+    busuanziSitePVText = "本站访问量"
+    busuanziSitePVIcon = "eye"
+    enableSocials = true
+
+    ######################################
+    # 多语言
+
+    enableLangToggle = false
+    hideLangToggleInHome = false
+    autoHideLangToggle = true
+
+    ######################################
+    # 代码块
+
+    enableHighlight = true
+    enableOverflowY = true
+    maxHeight = 20
+    enableCopy = true
+    enableCopyAutoHide = true
+
+    ######################################
+    # 文件指纹和子资源完整性（SRI）
+
+    enableFingerprint = true
+    enableSRI = false
+
+    ######################################
+    # HTTPS 强制跳转
+
+    enableForceHTTPS = false
+
+    ######################################
+    # 平滑滚动
+
+    enableSmoothScroll = true
+
+    ######################################
+    # 图片缩放
+
+    enableMediumZoom = true
+
+    ######################################
+    # Instant Page
+
+    enableInstantPage = true
+
+    ######################################
+    # Lunr 搜索
+
+    enableLunrSearch = false
+
+    ######################################
+    # Algolia search
+
+    enableAlgoliaSearch = false
+    algoliaAppId = ""
+    algoliaApiKey = ""
+    algoliaIndexName = ""
+
+    ######################################
+    # 404 页面
+
+    fofPoster = ""
+    fofVideoWebm = ""
+    fofVideoMp4 = ""
+
+    ######################################
+    # 定制第三方库的地址
+
+    [params.lib]
+        host = "https://cdn.jsdelivr.net"
+    [params.lib.path]
+        clipboard = "/npm/clipboard-polyfill@2.8.6/dist/clipboard-polyfill.min.js"
+        instantsearch = "/npm/instantsearch.js@2/dist/instantsearch.min.js"
+        gitalk = "/npm/gitalk@1/dist/gitalk.min.js"
+        gitalk_css = "/npm/gitalk@1/dist/gitalk.css"
+        instantpage = "/npm/instant.page@5.1.0/instantpage.min.js"
+        katex = "/npm/katex@0.13.0/dist/katex.min.js"
+        katex_css = "/npm/katex@0.13.0/dist/katex.min.css"
+        katex_mhchem = "/npm/katex@0.13.0/dist/contrib/mhchem.min.js"
+        katex_auto_render = "/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        lunr = "/npm/lunr@2.3.9/lunr.min.js"
+        lunr_tinyseg = "/npm/lunr-languages@1.4.0/tinyseg.js"
+        lunr_stemmer = "/npm/lunr-languages@1.4.0/min/lunr.stemmer.support.min.js"
+        lunr_lang = "/npm/lunr-languages@1.4.0/min/lunr.de.min.js"
+        mathjax = "/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"
+        medium_zoom = "/npm/medium-zoom@latest/dist/medium-zoom.min.js"
+        mermaid = "/npm/mermaid@8.8.3/dist/mermaid.min.js"
+        qrcode = "/npm/qrcode-generator@1.4.4/qrcode.min.js"
+        valine = "/npm/valine@1.4.14/dist/Valine.min.js"
+        busuanzi = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+        utterances = "https://utteranc.es/client.js"
+
+    ######################################
+    # 作者信息
+
+    [params.author]
+        name = "Julian"
+        email = ""
+        motto = "When the Wind Rises"
+        avatar = "/icons/apple-touch-icon.png"
+        website = "https://julianzhang.space/"
+        twitter = ""
+        fediverse = ""

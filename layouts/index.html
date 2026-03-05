@@ -1,42 +1,45 @@
 {{ define "main" }}
-<div class = "article-content">
-    {{ if isset .Site.Params "description" }}
-    <div class="description">
-        <p>{{ .Site.Params.Description | markdownify }}</p>
-    </div>
-    {{ end }}
-
-    <!-- 显示分类介绍 -->
-    {{ range where .Site.Sections "Kind" "section" }}
-        {{ if not (in (slice "posts" "about" "tags") .Params.Section) }}
-        <div class="category-preview">
-            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            <p>{{ .Content }}</p>
-        </div>
-        {{ end }}
-    {{ end }}
-
-    <!-- 显示最新文章列表（最多5篇） -->
-    <h2>最新文章</h2>
-    {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
-    {{ $latestPosts := first 5 ($pages.ByDate.Reverse) }}
-
-    {{ if $latestPosts }}
-        <ul class="archives-list">
-            {{ range $latestPosts }}
-                <li class="archives-list-item">
-                    <span class="archives-list-item-date">{{ .PublishDate.Format "2006-01-02" }}</span>
-                    <span class="archives-list-item-title">
-                        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                    </span>
-                    <span class="archives-list-item-section">
-                        <a href="{{ .Section | relLangURL }}">{{ .CurrentSection.Title }}</a>
-                    </span>
-                </li>
+<main class="main single" id="main">
+    <div class="main-inner">
+        <article class="content post">
+            <!-- 站点描述 -->
+            {{ if .Site.Params.siteDescription }}
+            <div class="post-description">
+                <p>{{ .Site.Params.siteDescription }}</p>
+            </div>
             {{ end }}
-        </ul>
-    {{ else }}
-        <p>暂无文章</p>
-    {{ end }}
-</div>
+
+            <!-- 分类导航 -->
+            <h2 id="探索"><a href="#探索" class="heading-anchor">探索</a></h2>
+            <div class="category-grid">
+                {{ range where .Site.Sections "Kind" "section" }}
+                    {{ if not (in (slice "posts" "about" "tags" "categories") .Section) }}
+                    <div class="category-card">
+                        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                        <p>{{ .Summary | plainify | truncate 80 }}</p>
+                    </div>
+                    {{ end }}
+                {{ end }}
+            </div>
+
+            <!-- 最新文章 -->
+            <h2>最新文章</h2>
+            {{ $pages := where site.RegularPages "Section" "in" site.Params.mainSections }}
+            {{ $latestPosts := first 3 ($pages.ByDate.Reverse) }}
+
+            {{ if $latestPosts }}
+                <ul class="latest-posts">
+                    {{ range $latestPosts }}
+                        <li>
+                            <span class="post-date">{{ .PublishDate.Format "2006-01-02" }}</span>
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                        </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <p>暂无文章</p>
+            {{ end }}
+        </article>
+    </div>
+</main>
 {{ end }}

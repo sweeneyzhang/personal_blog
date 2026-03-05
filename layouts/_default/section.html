@@ -1,22 +1,30 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  <p>{{ .Content }}</p>
+<main class="main single" id="main">
+    <div class="main-inner">
+        <article class="content post">
+            <h1 class="post-title">{{ .Title }}</h1>
 
-  {{ $pages := .RegularPages }}
-  {{ if $pages }}
-    <ul class="archives-list">
-      {{ range $pages }}
-        <li class="archives-list-item">
-          <span class="archives-list-item-date">{{ .PublishDate.Format "2006-01-02" }}</span>
-          <span>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          </span>
-        </li>
-      {{ end }}
-    </ul>
-  {{ else }}
-    <p>暂无文章</p>
-  {{ end }}
+            {{ if .Content }}
+            <div class="post-content">
+                {{ .Content }}
+            </div>
+            {{ end }}
 
-  <div class="page-footer"></div>
+            {{ $pages := .RegularPages }}
+            {{ if $pages }}
+                <h2>文章列表</h2>
+                <ul class="latest-posts">
+                    {{ range $pages }}
+                        <li>
+                            <span class="post-date">{{ .PublishDate.Format "2006-01-02" }}</span>
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                        </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <p>暂无文章</p>
+            {{ end }}
+        </article>
+    </div>
+</main>
 {{ end }}
